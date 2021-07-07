@@ -1,0 +1,43 @@
+import requests
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+def get_weather():
+    # API call below, then formatting the response into json
+    api = 'http://api.openweathermap.org/data/2.5/weather?&appid=7113e7c022e4e898beaddbba87f4b835&q='
+    city = input('Enter City: ')
+    url = api + city
+
+    r = requests.get(url).json()
+    weather = r
+
+
+    # Weather information stored into variables and formatted into a string
+    name = weather['name']
+    description = weather['weather'][0]['description']
+    temp = weather['main']['temp']
+    wind = weather['wind']['speed']
+
+
+    final_format = 'City: %s \nConditions: %s \nTemperature (°F): %s \nWind Speed: %s' % (name, description, temp, wind)
+    print(final_format)
+
+get_weather()
+
+# Routes for web pages
+@app.route('/')
+def home():
+    return render_template('layout.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/styles.css' )}}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+</head>
+
+<body>
+    <div class="title">
+        <h1>Mason's Weather Station</h1>
+    </div> 
+    <div class="get-weather">
+            <form class='form' method='POST'>
+                <input class="enter-city" name='city' placeholder="Enter City">
+                <input type='submit' value='Search' action='\'>
+            </form>
+    </div>
+    <div class="weather-wrapper">
+        <div class="weather-info">
+            <div class="display-weather">
+                <form class='display-form' method="POST">
+                    <strong>City:</strong> {{ name }}<br>
+                    <strong>Conditions:</strong> {{ description }}<br>
+                    <strong>Temperature:</strong> {{ temp }}°F<br>
+                    <strong>Wind Speed:</strong> {{ wind }}<br>
+                </form>
+            </div>
+            <div class="icon-container">
+                <figure method='POST' class="image">
+                    <img src="http://openweathermap.org/img/w/{{ icon }}.png" alt="icon">
+                </figure>
+            </div>
+    </div>
+    </div>
+</body>
+</html>
